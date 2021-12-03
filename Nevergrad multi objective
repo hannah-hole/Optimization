@@ -71,19 +71,18 @@ def Chankong_Haimes(base_Optimizer=CMA, budget = 100):
     f = concat(f1, f2)
     
     # set the search domains
-    instrument = ng.Instrumentation(ng.var.Array(2).bounded([-20, 20], [-20, 20])
+    instrument = ng.Instrumentation(ng.var.Array(2).bounded([-20, 20], [-20, 20]))
     
     # define the optimizer
     optimizer = ng.optimizers.base_Optimizer(parametrization= instrument, budget=budget)                                
                                     
     # add the constraints
     optimizer.parametrization.register_cheap_constraint(lambda x, y: x**2 + y**2 <= 225)
-    optimizer.parametrization.register_cheap_constraint(lambda x, y: x - 3y + 10 <= 0)
+    optimizer.parametrization.register_cheap_constraint(lambda x, y: x - 3*y + 10 <= 0)
      
     # minimize the function under constraints using chosen parameters
     recommendation = optimizer.minimize(f)
-                                    
-  return recommendation
+    return recommendation
 
 
 # Constr-Ex problem 
@@ -95,19 +94,19 @@ def ConstrEx(base_Optimizer=CMA, budget = 100):
     f = concat(f1, f2)
     
     # set the search domains
-    instrument = ng.Instrumentation(ng.var.Array(2).bounded([0.1, 1], [0, 5])
+    instrument = ng.Instrumentation(ng.var.Array(2).bounded([0.1, 1], [0, 5]))
     
     # define the optimizer
     optimizer = ng.optimizers.base_Optimizer(parametrization= instrument, budget=budget)
     
     # add the constraints
-    optimizer.parametrization.register_cheap_constraint(lambda x, y: y + 9x >= 6)
-    optimizer.parametrization.register_cheap_constraint(lambda x, y: -y + 9x >= 1)
+    optimizer.parametrization.register_cheap_constraint(lambda x, y: y + 9*x >= 6)
+    optimizer.parametrization.register_cheap_constraint(lambda x, y: -y + 9*x >= 1)
     
     # minimize the function under constraints using chosen parameters
     recommendation = optimizer.minimize(f)                           
                                     
-  return recommendation
+    return recommendation
   
   # Schaffer function 
 
@@ -139,7 +138,7 @@ def test_func(base_Optimizer=CMA, budget = 100):
   f = concat(f1, f2)
  
   # set the search domains
-  instrument = ng.Instrumentation(ng.var.Array(2).bounded([-7, 4],[-7, 4])
+  instrument = ng.Instrumentation(ng.var.Array(2).bounded([-7, 4],[-7, 4]))
  
   # define the optimizer
   optimizer = ng.optimizers.base_Optimizer(parametrization= instrument, budget=budget)                                
@@ -147,7 +146,7 @@ def test_func(base_Optimizer=CMA, budget = 100):
   # add the constraints
   optimizer.parametrization.register_cheap_constraint(lambda x, y: 6.5 - (x/6) - y >= 0)
   optimizer.parametrization.register_cheap_constraint(lambda x, y: 7.5 - 0.5*x - y >= 0)
-  optimizer.parametrization.register_cheap_constraint(lambda x, y: g3 30 - 5*x - y >= 0)
+  optimizer.parametrization.register_cheap_constraint(lambda x, y: 30 - 5*x - y >= 0)
     
   # minimize the function under constraints using chosen parameters
   recommendation = optimizer.minimize(f)
@@ -167,14 +166,14 @@ def kursawe(base_Optimizer=CMA, budget = 100):
   f = concat(f1, f2)
  
   # set the search domains
-  instrument = ng.Instrumentation(ng.var.Array(2).bounded([-5, 5])
+  instrument = ng.Instrumentation(ng.var.Array(2).bounded([-5, 5]))
  
   # define the optimizer
   optimizer = ng.optimizers.base_Optimizer(parametrization= instrument, budget=budget)                                
                                     
   # add the constraints
   optimizer.parametrization.register_cheap_constraint(lambda x, y: x**2 + y**2 <= 225)
-  optimizer.parametrization.register_cheap_constraint(lambda x, y: x - 3y + 10 <= 0)
+  optimizer.parametrization.register_cheap_constraint(lambda x, y: x - 3*y + 10 <= 0)
      
   # minimize the function under constraints using chosen parameters
   recommendation = optimizer.minimize(f)
